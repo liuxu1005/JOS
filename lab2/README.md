@@ -141,3 +141,18 @@ Page Table Managemnet
         	}
 	}
 
+	int
+	page_insert(pde_t *pgdir, struct PageInfo *pp, void *va, int perm)
+	{
+		// Fill this function in
+		pte_t *tmp = pgdir_walk(pgdir, va, 1);
+         
+        	if( tmp == NULL )
+                	return -E_NO_MEM;
+		pp->pp_ref += 1;
+        	if( (*tmp & PTE_P) != 0 )
+                page_remove(pgdir, va);
+        	*tmp = page2pa(pp) | perm | PTE_P;
+        	pp->pp_link = NULL;
+		return 0;
+	}

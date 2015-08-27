@@ -123,3 +123,21 @@ Page Table Managemnet
 		return NULL;
 	}
 	
+	static void
+	boot_map_region(pde_t *pgdir, uintptr_t va, size_t size, physaddr_t pa, int perm)
+	{
+		// Fill this function in
+	   	size = ROUNDUP(size, PGSIZE);
+	 	pte_t *tmp;
+        	int i ;
+        	for( i = 0; i < size; i += PGSIZE) { 
+              		tmp = pgdir_walk(pgdir, (void *)(va + i), 1);  
+              		if ( tmp == NULL ) {
+                     		panic("boot_map_region: fail\n");
+                     		return;
+              		}
+              		*tmp = (pa + i) | perm | PTE_P; 
+ 
+        	}
+	}
+

@@ -156,3 +156,18 @@ Page Table Managemnet
         	pp->pp_link = NULL;
 		return 0;
 	}
+	
+	struct PageInfo *
+	page_lookup(pde_t *pgdir, void *va, pte_t **pte_store)
+	{
+		// Fill this function in
+        	pte_t *tmp = pgdir_walk(pgdir, va, 0);
+        	if ( tmp != NULL && (*tmp & PTE_P)) {
+                	if(pte_store != NULL) 
+                        	*pte_store = tmp;
+                	return (struct PageInfo *)pa2page(*tmp);
+
+        	}
+		return NULL;
+	}
+	

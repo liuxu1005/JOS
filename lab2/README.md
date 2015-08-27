@@ -44,7 +44,7 @@ fragment of mem_init
 fragment of page_init
 
         size_t i;
-	for (i = 0; i < npages; i++) {
+        for (i = 0; i < npages; i++) {
 		pages[i].pp_ref = 0;
 		pages[i].pp_link = page_free_list;
 		page_free_list = &pages[i];

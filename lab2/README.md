@@ -81,3 +81,16 @@ page_alloc
         	}
 		return NULL;
 	}
+
+page_free
+	void
+	page_free(struct PageInfo *pp)
+	{
+		if(pp == NULL) return;
+        	if (pp->pp_ref != 0 || pp->pp_link != NULL)
+        		panic("page_free: invalid page free\n");
+        	else {
+            		pp->pp_link = page_free_list;
+            		page_free_list = pp;
+        	}
+        }

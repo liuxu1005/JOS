@@ -1,10 +1,15 @@
 Test Result:
 
-running JOS: (0.9s) 
+running JOS: (0.9s)
+
   Physical page allocator: OK 
+  
   Page management: OK 
+  
   Kernel page directory: OK 
+  
   Page management 2: OK 
+  
 Score: 70/70
 
 Code:

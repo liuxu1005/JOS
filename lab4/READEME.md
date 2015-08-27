@@ -1,3 +1,4 @@
+
 Test Result:
 
 	dumbfork: OK (1.9s) 

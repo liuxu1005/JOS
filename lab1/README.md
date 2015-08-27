@@ -19,8 +19,11 @@ Exercise 8. We have omitted a small fragment of code - the code necessary to pri
 
 case 'o':
 			// Replace this with your code.
+			
 			num = getuint(&ap, lflag);
+			
                         base = 8;
+                        
                         goto number;
                         
 

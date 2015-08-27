@@ -62,3 +62,28 @@ size_t i;
               pages[i/PGSIZE].pp_link = NULL;     
         }      
         pages[i/PGSIZE].pp_link = p;
+
+fragment of page_alloc
+ if ( page_free_list ) {
+            if(alloc_flags & ALLOC_ZERO) 
+                memset(page2kva(page_free_list), 0, PGSIZE);
+               
+                struct PageInfo *tmp = page_free_list;
+                 
+                page_free_list = page_free_list->pp_link;
+                tmp->pp_link = NULL;
+                      
+                return tmp; 
+            
+        }
+	return NULL;
+	
+fragment of page_free
+
+   if(pp == NULL) return;
+        if (pp->pp_ref != 0 || pp->pp_link != NULL)
+            panic("page_free: invalid page free\n");
+        else {
+            pp->pp_link = page_free_list;
+            page_free_list = pp;
+        }

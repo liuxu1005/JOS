@@ -37,9 +37,27 @@ fragment of mem_init
 
         kern_pgdir = (pde_t *) boot_alloc(PGSIZE);
         memset(kern_pgdir, 0, PGSIZE);
+        kern_pgdir[PDX(UVPT)] = PADDR(kern_pgdir) | PTE_U | PTE_P;
         pages = boot_alloc(npages * sizeof(struct PageInfo));
         memset(pages, 0, npages * sizeof(struct PageInfo));
         
 fragment of page_init
 
-
+        size_t i;
+	for (i = 0; i < npages; i++) {
+		pages[i].pp_ref = 0;
+		pages[i].pp_link = page_free_list;
+		page_free_list = &pages[i];
+	}
+        pages[0].pp_ref = 1;
+  
+        pages[1].pp_link = pages[0].pp_link;
+        
+        uint32_t nextfreepa = PADDR(boot_alloc(0)); 
+        
+        void *p = pages[IOPHYSMEM/PGSIZE].pp_link;
+        for (i = IOPHYSMEM; i < nextfreepa; i += PGSIZE) { 
+              pages[i/PGSIZE].pp_ref = 1;  
+              pages[i/PGSIZE].pp_link = NULL;     
+        }      
+        pages[i/PGSIZE].pp_link = p;

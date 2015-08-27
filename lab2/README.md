@@ -83,8 +83,8 @@ page_alloc
 	}
 
 page_free
-	void
-	page_free(struct PageInfo *pp)
+
+	void page_free(struct PageInfo *pp)
 	{
 		if(pp == NULL) return;
         	if (pp->pp_ref != 0 || pp->pp_link != NULL)

@@ -17,7 +17,7 @@ Code:
 Exercise 1. In the file kern/pmap.c, you must implement code for the following functions (probably in the order given).
 
 	// LAB 2: Your code here.
-        if (n > 0) {
+	if (n > 0) {
 		// Round-up alloc_size promises round-up nextfree.
 		uint32_t alloc_size = ROUNDUP(n, PGSIZE);
 

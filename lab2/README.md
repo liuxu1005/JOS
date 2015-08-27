@@ -49,6 +49,7 @@ fragment of page_init
 		pages[i].pp_link = page_free_list;
 		page_free_list = &pages[i];
 	}
+	
         pages[0].pp_ref = 1;
   
         pages[1].pp_link = pages[0].pp_link;

@@ -303,7 +303,6 @@ trap_dispatch(struct Trapframe *tf)
 		panic("unhandled trap in kernel");
 	else {
 		env_destroy(curenv);
-		return;
 	}
 }
 

@@ -312,11 +312,11 @@ trap_dispatch(struct Trapframe *tf)
 		serial_intr();
 		return;
 	}
-        if (tf->tf_trapno == IRQ_OFFSET + IRQ_NIC) {
+ /*       if (tf->tf_trapno == IRQ_OFFSET + IRQ_NIC) {
                 lapic_eoi();
-	cprintf("I am net card===============================================\n");
+                //I am net card
 		return;
-	}
+	}*/
 	// Unexpected trap: The user process or the kernel has a bug.
  
 	print_trapframe(tf);
@@ -324,7 +324,6 @@ trap_dispatch(struct Trapframe *tf)
 		panic("unhandled trap in kernel");
 	else {
 		env_destroy(curenv);
-		return;
 	}
 }
 

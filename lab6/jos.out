@@ -24,4 +24,4 @@ bitmap is good
 ns: 52:54:00:12:34:56 bound to static IP 10.0.2.15
 NS: TCP/IP initialized.
 Waiting for http connections...
-failed to read file or block not foundqemu: terminating on signal 15 from pid 2686
+failed to read file or block not foundqemu: terminating on signal 15 from pid 7288

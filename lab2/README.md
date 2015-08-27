@@ -186,5 +186,10 @@ Page Table Managemnet
         	tlb_invalidate(pgdir, va);
 	}
 	
-	
+Part 3: Kernal Address Space:
+fragment of mem_init
+
+	boot_map_region(kern_pgdir, UPAGES, PTSIZE, PADDR(pages), PTE_U);
+	boot_map_region(kern_pgdir, KSTACKTOP-KSTKSIZE, KSTKSIZE, PADDR(bootstack), PTE_W);
+	boot_map_region(kern_pgdir, KERNBASE, -KERNBASE, 0, PTE_W);
 	

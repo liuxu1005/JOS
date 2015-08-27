@@ -43,11 +43,11 @@ Exercise 1. In the file kern/pmap.c, you must implement code for the following f
 
 fragment of mem_init
 
-        kern_pgdir = (pde_t *) boot_alloc(PGSIZE);
-        memset(kern_pgdir, 0, PGSIZE);
-        kern_pgdir[PDX(UVPT)] = PADDR(kern_pgdir) | PTE_U | PTE_P;
-        pages = boot_alloc(npages * sizeof(struct PageInfo));
-        memset(pages, 0, npages * sizeof(struct PageInfo));
+	kern_pgdir = (pde_t *) boot_alloc(PGSIZE);
+	memset(kern_pgdir, 0, PGSIZE);
+	kern_pgdir[PDX(UVPT)] = PADDR(kern_pgdir) | PTE_U | PTE_P;
+	pages = boot_alloc(npages * sizeof(struct PageInfo));
+	memset(pages, 0, npages * sizeof(struct PageInfo));
         
 fragment of page_init
 
@@ -96,7 +96,9 @@ page_free
             		page_free_list = pp;
         	}
 	}
-	
+
+Part 2: Virtual Memory
+
 Page Table Managemnet
 
 	pte_t *pgdir_walk(pde_t *pgdir, const void *va, int create)

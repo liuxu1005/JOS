@@ -12,6 +12,7 @@ Code:
 Exercise 1. In the file kern/pmap.c, you must implement code for the following functions (probably in the order given).
 
 fragment of boot_alloc
+
 // LAB 2: Your code here.
         if (n > 0) {
 		// Round-up alloc_size promises round-up nextfree.

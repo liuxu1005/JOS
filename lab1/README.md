@@ -18,13 +18,11 @@ Code:
 Exercise 8. We have omitted a small fragment of code - the code necessary to print octal numbers using patterns of the form "%o". Find and fill in this code fragment.
 
 case 'o':
-			// Replace this with your code.
+	// Replace this with your code.
 			
-			num = getuint(&ap, lflag);
-			
-                        base = 8;
-                        
-                        goto number;
+	num = getuint(&ap, lflag);
+        base = 8;
+        goto number;
                         
 
 Exercise 11. Implement the backtrace function as specified above. 

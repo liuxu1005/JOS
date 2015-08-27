@@ -35,5 +35,11 @@ Exercise 1. In the file kern/pmap.c, you must implement code for the following f
 	return result;
 fragment of mem_init
 
+        kern_pgdir = (pde_t *) boot_alloc(PGSIZE);
+        memset(kern_pgdir, 0, PGSIZE);
         pages = boot_alloc(npages * sizeof(struct PageInfo));
         memset(pages, 0, npages * sizeof(struct PageInfo));
+        
+fragment of page_init
+
+

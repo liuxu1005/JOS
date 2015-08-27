@@ -33,3 +33,6 @@ Exercise 1. In the file kern/pmap.c, you must implement code for the following f
 		result = nextfree;
 	}
 	return result;
+fragment of mem_init
+          pages = boot_alloc(npages * sizeof(struct PageInfo));
+          memset(pages, 0, npages * sizeof(struct PageInfo));

@@ -171,3 +171,18 @@ Page Table Managemnet
 		return NULL;
 	}
 	
+	void
+	page_remove(pde_t *pgdir, void *va)
+	{
+		// Fill this function in
+        	pte_t *tmppte;
+        	struct PageInfo *tmp = page_lookup(pgdir, va, &tmppte);
+        	if( tmp != NULL && (*tmppte & PTE_P)) {
+                	page_decref(tmp);
+                	*tmppte = 0;
+		}
+        	tlb_invalidate(pgdir, va);
+	}
+	
+	
+	

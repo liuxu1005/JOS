@@ -38,6 +38,7 @@ Exercise 1. In the file kern/pmap.c, you must implement code for the following f
 		result = nextfree;
 	}
 	return result;
+
 fragment of mem_init
 
         kern_pgdir = (pde_t *) boot_alloc(PGSIZE);
@@ -63,8 +64,8 @@ fragment of page_init
         
         void *p = pages[IOPHYSMEM/PGSIZE].pp_link;
         for (i = IOPHYSMEM; i < nextfreepa; i += PGSIZE) { 
-              pages[i/PGSIZE].pp_ref = 1;  
-              pages[i/PGSIZE].pp_link = NULL;     
+        	pages[i/PGSIZE].pp_ref = 1;  
+                pages[i/PGSIZE].pp_link = NULL;     
         }      
         pages[i/PGSIZE].pp_link = p;
 

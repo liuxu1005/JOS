@@ -14,6 +14,8 @@ Score: 70/70
 
 Code:
 
+Part 1: Physical Page Managment
+
 Exercise 1. In the file kern/pmap.c, you must implement code for the following functions (probably in the order given).
 
 	// LAB 2: Your code here.
@@ -93,5 +95,31 @@ page_free
             		pp->pp_link = page_free_list;
             		page_free_list = pp;
         	}
+	}
+	
+Page Table Managemnet
+
+	pte_t *pgdir_walk(pde_t *pgdir, const void *va, int create)
+	{
+		// Fill this function in
+        	pte_t * pte;
+        	if ((pgdir[PDX(va)] & PTE_P) != 0) {
+        	        pte =(pte_t *) KADDR(PTE_ADDR(pgdir[PDX(va)]));
+        	        return pte + PTX(va);  
+        	} 
+        
+        	if(create != 0) {
+               		struct PageInfo *tmp;
+               		tmp = page_alloc(1);
+       
+               		if(tmp != NULL) {
+                       		tmp->pp_ref += 1;
+                       		tmp->pp_link = NULL;
+                       		pgdir[PDX(va)] = page2pa(tmp) | PTE_U | PTE_W | PTE_P;
+                       		pte = (pte_t *)KADDR(page2pa(tmp));
+                       		return pte+PTX(va);
+               	}
+        }
+		return NULL;
 	}
 	

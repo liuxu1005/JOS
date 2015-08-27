@@ -67,3 +67,24 @@ fragment of page_init
               pages[i/PGSIZE].pp_link = NULL;     
         }      
         pages[i/PGSIZE].pp_link = p;
+
+page_alloc
+	struct PageInfo *
+
+	page_alloc(int alloc_flags)
+	{
+	// Fill this function in
+       if ( page_free_list ) {
+            if(alloc_flags & ALLOC_ZERO) 
+                memset(page2kva(page_free_list), 0, PGSIZE);
+               
+                struct PageInfo *tmp = page_free_list;
+                 
+                page_free_list = page_free_list->pp_link;
+                tmp->pp_link = NULL;
+                      
+                return tmp; 
+            
+        }
+	return NULL;
+}

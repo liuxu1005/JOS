@@ -19,3 +19,13 @@ Test Result:
 
 	Score: 80/80
 
+Part A: User Environments and Exception Handling
+
+Allocating the Environments Array
+
+	envs = boot_alloc(NENV * sizeof(struct Env));
+	boot_map_region(kern_pgdir, UENVS, PTSIZE, PADDR(envs), PTE_U);
+	
+Creating and Running Environments
+
+

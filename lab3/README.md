@@ -28,4 +28,41 @@ Allocating the Environments Array
 	
 Creating and Running Environments
 
+	void env_init(void)
+	{
+		// Set up envs array
+		// LAB 3: Your code here.
+		size_t i;
+        	//has been set to 0 when allocated?
+		for(i = NENV - 1; i >= 1; i--) {
+                	envs[i].env_link = envs + i -1;
+                	envs[i].env_id = 0;
+        	}
+        	envs[0].env_id = 0;
+        	env_free_list = envs;
+		// Per-CPU part of the initialization
+		env_init_percpu();
+	}
+	
+
+	static int env_setup_vm(struct Env *e)
+	{
+		int i;
+		struct PageInfo *p = NULL;
+
+		// Allocate a page for the page directory
+		if (!(p = page_alloc(ALLOC_ZERO)))
+			return -E_NO_MEM;
+        		p->pp_ref++;
+        		e->env_pgdir = page2kva(p);    
+        		memcpy(e->env_pgdir, kern_pgdir, PGSIZE);  
+			// UVPT maps the env's own page table read-only.
+			// Permissions: kernel R, user R
+			e->env_pgdir[PDX(UVPT)] = PADDR(e->env_pgdir) | PTE_P | PTE_U;
+
+		return 0;
+	}
+	
+	
+
 

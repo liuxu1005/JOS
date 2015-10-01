@@ -1,18 +1,12 @@
 Test result:
 
-running JOS: (1.2s) 
-
-  printf: OK 
-  
-  backtrace count: OK 
-  
-  backtrace arguments: OK 
-  
-  backtrace symbols: OK 
-  
-  backtrace lines: OK 
-  
-Score: 50/50
+	  running JOS: (1.2s) 
+	  printf: OK 
+	  backtrace count: OK 
+	  backtrace arguments: OK 
+	  backtrace symbols: OK 
+	  backtrace lines: OK 
+	  Score: 50/50
 
 Code:
 Exercise 8. We have omitted a small fragment of code - the code necessary to print octal numbers using patterns of the form "%o". Find and fill in this code fragment.
